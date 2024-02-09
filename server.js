@@ -21,6 +21,10 @@ const transporter = nodemailer.createTransport({
 app.post("/send-email", async (req, res) => {
   const { fullName, email, mobileNumber, emailSubject, message } = req.body;
 
+  if (!fullName || !email || !mobileNumber || !emailSubject || !message) {
+    return res.status(400).send("Please fill all input boxes.");
+  }
+
   if (!isEmail(email)) {
     return res.status(400).send("Invalid email address.");
   }
