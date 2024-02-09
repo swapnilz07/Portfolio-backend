@@ -18,6 +18,10 @@ const transporter = nodemailer.createTransport({
   },
 });
 
+app.get("/", async (req, res) => {
+  res.send("Server is Running-----");
+});
+
 app.post("/send-email", async (req, res) => {
   const { fullName, email, mobileNumber, emailSubject, message } = req.body;
 
